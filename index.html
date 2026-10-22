@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Patitas: razas de perros y adopción</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#fff9ef; --surface:#fffdf8; --text:#2b2118; --muted:#5a4a3c;
+  --accent:#f6d5b5; --on-accent:#2b2118; --line:#e3d2bb; --link:#0b4f8a; --focus:#b3330a;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;font-size:1.125rem;line-height:1.65}
+h1,h2,h3,button,label,legend,th,caption,nav{font-family:"Trebuchet MS",Verdana,sans-serif}
+a{color:var(--link);text-decoration:underline;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,h3:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--on-accent);padding:.75rem 1rem;z-index:20}
+.skip:focus{left:0}
+header,main,footer{max-width:60rem;margin:0 auto;padding:1rem 1.25rem}
+header{border-bottom:4px solid var(--accent)}
+h1{font-size:2.4rem;line-height:1.15;margin:.5rem 0}
+h2{font-size:1.7rem;margin:2.5rem 0 .75rem}
+h3{font-size:1.3rem;margin:0 0 .4rem}
+nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;padding:0;margin:.5rem 0}
+nav a{display:inline-block;min-height:24px;padding:.35rem 0;font-weight:700}
+form{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.25rem}
+.field{margin-bottom:1rem}
+label,legend{display:block;font-weight:700;margin-bottom:.3rem}
+input[type=text],input[type=email],select,textarea{width:100%;max-width:32rem;box-sizing:border-box;padding:.6rem;font:inherit;color:var(--text);background:var(--bg);border:2px solid #8a7560;border-radius:6px}
+fieldset{border:0;padding:0;margin:0 0 1rem}
+.radio{display:flex;align-items:center;gap:.5rem;min-height:32px}
+.radio input{width:1.4rem;height:1.4rem}
+.radio label{display:inline;margin:0;font-weight:400}
+button{font-size:1.05rem;font-weight:700;min-height:44px;padding:.6rem 1.4rem;border:0;border-radius:8px;background:var(--accent);color:var(--on-accent);cursor:pointer}
+.hint{color:var(--muted);font-size:.95rem;margin:.2rem 0 0}
+.error{color:#a4160a;font-weight:700;margin:.3rem 0 0}
+[role=status]{margin-top:1rem;font-weight:700}
+.breeds{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
+article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem}
+article img{width:100%;height:auto;max-width:9rem;display:block;border-radius:8px;margin-bottom:.5rem}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:34rem;background:var(--surface)}
+caption{text-align:left;font-weight:700;padding:.5rem 0}
+th,td{border:1px solid var(--line);padding:.6rem;text-align:left}
+thead th{background:var(--accent);color:var(--on-accent)}
+tbody th{background:#fdf1e0}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido principal</a>
+
+<header>
+  <h1>Patitas</h1>
+  <p>Conoce razas de perros y encuentra a tu nuevo compañero.</p>
+  <nav aria-label="Principal">
+    <ul>
+      <li><a href="#buscar">Buscar raza</a></li>
+      <li><a href="#razas">Razas</a></li>
+      <li><a href="#comparativa">Comparativa</a></li>
+      <li><a href="#adopcion">Adoptar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenido">
+  <h2 id="buscar">Buscar una raza</h2>
+  <form id="form-busqueda" novalidate>
+    <div class="field">
+      <label for="raza">Nombre de la raza</label>
+      <input type="text" id="raza" name="raza" list="lista-razas" autocomplete="off" aria-describedby="ayuda-raza">
+      <p id="ayuda-raza" class="hint">Por ejemplo: Labrador, Chihuahua o Golden.</p>
+      <datalist id="lista-razas">
+        <option value="Labrador Retriever"></option>
+        <option value="Chihuahua"></option>
+        <option value="Pastor Alemán"></option>
+        <option value="Bulldog Francés"></option>
+        <option value="Golden Retriever"></option>
+      </datalist>
+    </div>
+    <button type="submit">Buscar raza</button>
+    <p id="resultado-busqueda" role="status"></p>
+  </form>
+
+  <h2 id="razas">Razas</h2>
+  <div class="breeds">
+    <article id="labrador">
+      <img alt="Ilustración de un labrador de pelaje dorado." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23fff3d6'/%3E%3Cellipse cx='25' cy='55' rx='14' ry='28' fill='%23d9a441'/%3E%3Cellipse cx='95' cy='55' rx='14' ry='28' fill='%23d9a441'/%3E%3Ccircle cx='60' cy='62' r='36' fill='%23d9a441'/%3E%3Ccircle cx='47' cy='55' r='5' fill='%23222'/%3E%3Ccircle cx='73' cy='55' r='5' fill='%23222'/%3E%3Cellipse cx='60' cy='75' rx='9' ry='6' fill='%23222'/%3E%3C/svg%3E">
+      <h3 tabindex="-1">Labrador Retriever</h3>
+      <p>Amistoso y paciente. Es un gran perro de familia y aprende rápido.</p>
+    </article>
+    <article id="chihuahua">
+      <img alt="Ilustración de un chihuahua de pelaje canela." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23fff3d6'/%3E%3Cellipse cx='25' cy='45' rx='14' ry='28' fill='%23c68b59'/%3E%3Cellipse cx='95' cy='45' rx='14' ry='28' fill='%23c68b59'/%3E%3Ccircle cx='60' cy='62' r='36' fill='%23c68b59'/%3E%3Ccircle cx='47' cy='55' r='5' fill='%23222'/%3E%3Ccircle cx='73' cy='55' r='5' fill='%23222'/%3E%3Cellipse cx='60' cy='75' rx='9' ry='6' fill='%23222'/%3E%3C/svg%3E">
+      <h3 tabindex="-1">Chihuahua</h3>
+      <p>La raza más pequeña. Es leal, alerta y se adapta bien a departamentos.</p>
+    </article>
+    <article id="pastor">
+      <img alt="Ilustración de un pastor alemán de pelaje café oscuro." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23fff3d6'/%3E%3Cellipse cx='25' cy='45' rx='14' ry='28' fill='%238a5a2b'/%3E%3Cellipse cx='95' cy='45' rx='14' ry='28' fill='%238a5a2b'/%3E%3Ccircle cx='60' cy='62' r='36' fill='%238a5a2b'/%3E%3Ccircle cx='47' cy='55' r='5' fill='%23222'/%3E%3Ccircle cx='73' cy='55' r='5' fill='%23222'/%3E%3Cellipse cx='60' cy='75' rx='9' ry='6' fill='%23222'/%3E%3C/svg%3E">
+      <h3 tabindex="-1">Pastor Alemán</h3>
+      <p>Inteligente y protector. Necesita ejercicio diario y entrenamiento constante.</p>
+    </article>
+    <article id="bulldog">
+      <img alt="Ilustración de un bulldog francés de pelaje gris." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23fff3d6'/%3E%3Cellipse cx='25' cy='40' rx='12' ry='22' fill='%237d7d7d'/%3E%3Cellipse cx='95' cy='40' rx='12' ry='22' fill='%237d7d7d'/%3E%3Ccircle cx='60' cy='62' r='36' fill='%237d7d7d'/%3E%3Ccircle cx='47' cy='55' r='5' fill='%23222'/%3E%3Ccircle cx='73' cy='55' r='5' fill='%23222'/%3E%3Cellipse cx='60' cy='75' rx='9' ry='6' fill='%23222'/%3E%3C/svg%3E">
+      <h3 tabindex="-1">Bulldog Francés</h3>
+      <p>Tranquilo y juguetón. Prefiere paseos cortos y no tolera bien el calor.</p>
+    </article>
+    <article id="golden">
+      <img alt="Ilustración de un golden retriever de pelaje dorado claro." src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23fff3d6'/%3E%3Cellipse cx='25' cy='55' rx='14' ry='28' fill='%23e0a030'/%3E%3Cellipse cx='95' cy='55' rx='14' ry='28' fill='%23e0a030'/%3E%3Ccircle cx='60' cy='62' r='36' fill='%23e0a030'/%3E%3Ccircle cx='47' cy='55' r='5' fill='%23222'/%3E%3Ccircle cx='73' cy='55' r='5' fill='%23222'/%3E%3Cellipse cx='60' cy='75' rx='9' ry='6' fill='%23222'/%3E%3C/svg%3E">
+      <h3 tabindex="-1">Golden Retriever</h3>
+      <p>Cariñoso y obediente. Le encanta el agua y convivir con niños.</p>
+    </article>
+  </div>
+
+  <h2 id="comparativa">Comparativa de razas</h2>
+  <div class="scroll">
+    <table>
+      <caption>Tamaño, peso y energía de cada raza</caption>
+      <thead>
+        <tr>
+          <th scope="col">Raza.</th>
+          <th scope="col">Tamaño.</th>
+          <th scope="col">Peso aproximado.</th>
+          <th scope="col">Nivel de energía.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Labrador Retriever.</th><td>Grande.</td><td>25 a 36 kg</td><td>Alto</td></tr>
+        <tr><th scope="row">Chihuahua.</th><td>Muy pequeño.</td><td>1 a 3 kg</td><td>Medio</td></tr>
+        <tr><th scope="row">Pastor Alemán.</th><td>Grande.</td><td>22 a 40 kg</td><td>Alto</td></tr>
+        <tr><th scope="row">Bulldog Francés.</th><td>Pequeño.</td><td>8 a 14 kg</td><td>Bajo</td></tr>
+        <tr><th scope="row">Golden Retriever.</th><td>Grande.</td><td>25 a 34 kg</td><td>Alto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="adopcion">Quiero adoptar</h2>
+  <p>Llena la solicitud y te contactaremos para conocerte y organizar una visita. Antes de adoptar, conoce tus responsabilidades en la <a href="https://www.xataka.com.mx/legislacion-y-derechos/mexico-fin-tendra-registro-nacional-mascotas-nuevas-reglas-para-proteger-a-animales-no-solo-a-perros-gatos/amp" target="_blank" rel="noopener">nueva Ley General de Bienestar, Cuidado y Protección de los Animales en México (se abre en una pestaña nueva)</a>.</p>
+  <form id="form-adopcion" novalidate>
+    <div class="field">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" autocomplete="name" aria-required="true" aria-describedby="err-nombre">
+      <p id="err-nombre" class="error"></p>
+    </div>
+    <div class="field">
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" name="correo" autocomplete="email" aria-required="true" aria-describedby="err-correo">
+      <p id="err-correo" class="error"></p>
+    </div>
+    <div class="field">
+      <label for="perro">Raza que te interesa</label>
+      <select id="perro" name="perro" aria-required="true" aria-describedby="err-perro">
+        <option value="">Elige una raza</option>
+        <option>Labrador Retriever</option>
+        <option>Chihuahua</option>
+        <option>Pastor Alemán</option>
+        <option>Bulldog Francés</option>
+        <option>Golden Retriever</option>
+      </select>
+      <p id="err-perro" class="error"></p>
+    </div>
+    <fieldset aria-describedby="err-vivienda">
+      <legend>¿Dónde vivirá el perro?</legend>
+      <div class="radio"><input type="radio" id="viv-casa" name="vivienda" value="casa"><label for="viv-casa">Casa con patio</label></div>
+      <div class="radio"><input type="radio" id="viv-depa" name="vivienda" value="departamento"><label for="viv-depa">Departamento</label></div>
+      <p id="err-vivienda" class="error"></p>
+    </fieldset>
+    <button type="submit">Enviar solicitud</button>
+    <p id="resultado-adopcion" role="status"></p>
+  </form>
+</main>
+
+<footer>
+  <p>Patitas es un sitio de práctica sobre accesibilidad web. Las imágenes son ilustraciones.</p>
+</footer>
+
+<script>
+(function(){
+  var norm=function(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();};
+  var razas=[
+    {id:"labrador",n:"Labrador Retriever"},{id:"chihuahua",n:"Chihuahua"},
+    {id:"pastor",n:"Pastor Alemán"},{id:"bulldog",n:"Bulldog Francés"},
+    {id:"golden",n:"Golden Retriever"}
+  ];
+  var estado=document.getElementById("resultado-busqueda");
+  document.getElementById("form-busqueda").addEventListener("submit",function(e){
+    e.preventDefault();
+    var q=norm(document.getElementById("raza").value);
+    var hit=q&&razas.filter(function(r){return norm(r.n).indexOf(q)!==-1;})[0];
+    if(!hit){
+      estado.textContent=q?"No encontramos esa raza. Prueba con Labrador, Chihuahua, Pastor Alemán, Bulldog Francés o Golden Retriever.":"Escribe el nombre de una raza para buscar.";
+      return;
+    }
+    estado.textContent="Raza encontrada: "+hit.n+".";
+    var h=document.querySelector("#"+hit.id+" h3");
+    h.scrollIntoView({block:"center"});
+    h.focus();
+  });
+
+  var f=document.getElementById("form-adopcion");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var campos=[
+      {el:f.nombre,err:"err-nombre",ok:f.nombre.value.trim().length>1,msg:"Escribe tu nombre completo."},
+      {el:f.correo,err:"err-correo",ok:/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.correo.value),msg:"Escribe un correo válido, por ejemplo nombre@correo.com."},
+      {el:f.perro,err:"err-perro",ok:f.perro.value!=="",msg:"Elige la raza que te interesa."},
+      {el:f.vivienda[0],err:"err-vivienda",ok:!!f.querySelector("input[name=vivienda]:checked"),msg:"Indica dónde vivirá el perro."}
+    ];
+    var primero=null;
+    campos.forEach(function(c){
+      document.getElementById(c.err).textContent=c.ok?"":c.msg;
+      if(c.el.setAttribute&&c.el!==f.vivienda[0]){c.el.setAttribute("aria-invalid",c.ok?"false":"true");}
+      if(!c.ok&&!primero){primero=c.el;}
+    });
+    var s=document.getElementById("resultado-adopcion");
+    if(primero){s.textContent="Hay errores en el formulario. Corrígelos y vuelve a enviar.";primero.focus();return;}
+    s.textContent="Gracias, "+f.nombre.value.trim()+". Recibimos tu solicitud para adoptar un "+f.perro.value+" y te escribiremos pronto.";
+    f.reset();
+  });
+})();
+</script>
+</body>
+</html>
